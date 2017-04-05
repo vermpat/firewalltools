@@ -1,0 +1,6 @@
+configure terminal
+no ip access-list extended all-traffic
+ip access-list extended all-traffic
+ remark $Revision: 145 $ $Date: 2015-10-21 15:44:59 +0200 (Wed, 21 Oct 2015) $ $LastChangedBy: baardman $ 
+evaluate returntraffic
+!End header

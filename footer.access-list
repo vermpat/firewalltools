@@ -1,0 +1,4 @@
+!Begin footer
+deny ip any any log
+
+end

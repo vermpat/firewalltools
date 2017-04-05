@@ -1,0 +1,744 @@
+! Add Paul Admiraal from home  27-10-2016  TheoA
+! new version after maintenance Theo/Cor  25-8-2016
+! Allow access to client systems Z08  TheoA  24-8-2016
+! Add TFTP DNW-WEB2 to ACF Bentveld Automatisering   6-4-2016  TheoA
+! Permit access via "RAS" to POLARIS en RASTEST  TheoA  1-4-2016
+! Enable access to VLAN 136   TheoA  7-3-2016
+! Enable access to DNW-WEB 137.17.112.12  19-2-2016  TheoA
+! Add NLR Isias server 137.17.29.87 for address book sync  26-10-2015  TheoA
+! Permit access to DLR  26-08-2015  TheoA
+! Allow external access to the InfoTrans server 24.04.2015 PatrickV
+! Added new Domain Controllers / DNS-servers NLR (137.17.28.204/205)  19-03-2015  TheoA
+! Aanvulling access Cisco ASA remote.dnw.aero to Terminustbv VPN client  06-11-2014  TheoA
+! Allow VLAN 2/3 access to 137.17.115.61 for testing  29-10-2014  TheoA
+! Change RAS access to Polaris to 137.17.116.248	03-10-2014  TheoA	
+! Add access to Cisco ASA remote.dnw.aero   29-04-2014  TheoA
+! Add FTPS to Transfer (137.17.112.2)  13-3-2013 TheoA
+! Add Exchange 2013 servers (116.60/61)  and remove NLR Tivoli backup -access  TheoA  17-2-2014
+! Add NLR TV / webcams to DNW op poort 8090   29-11-2013  TheoA
+! Minor cleanup: remove 137.17.115.132 Remote Desktop, not needed because of TeamViewer for Koldijk/Beenen 29-10-2013 RoelB
+! Major cleanup 17-10-2013 RoelB
+! Add MySQL port 3306 traffic Infocenter/Info-3  26-7-2013  TheoA
+! Add AH traffic to IPsec rules 17-07-2013 RoelB
+! Enable access to video LAN 145   TheoA  11-07-2013
+! MORE CLEANUP 26-06-2013 RoelB
+! MAJOR CLEANUP, REMOVED ALL SUPERFLUOUS IPSEC RULES 19-06-2013 RoelB
+! Enable some more IPsec ports from client networks for Cisco VPDN IPsec 11-06-2013 RoelB
+! Enable IPsec from client networks to any VPN server 07-05-2013 RoelB
+! Add access to info-ext.dnw.aero (137.17.112.3)  TheoA  26-4-2013
+! Enable Shell VPN to internal network (LST!!) TheoA  19-4-2013
+! Enable MAN VPN to client network 114/115  TheoA  12-04-2013  TheoA
+! Allow Remote Desktop access to WIN7-ESX from NLR   10-04-2013  TheoA
+! Enable Agusta Westland VPN to client network 114/115  TheoA  03-04-2013  TheoA
+! Permit NLR Terminal Server access to UniFLOW-printserver DNW  13-03-2013  TheoA
+! Enable Rolls-Royce VPN to client networks 114/115 (vpn1.rolls-royce.cm=132.244.240.20)  TheoA  22-01-2013
+! Airbus VPN address change 85.182.236.138 to 80.228.67.90 (find&replace) TheoA  05.12.2012
+! Permit Peter Faasse (137.17.151.230) access to 137.17.114.100/101  TheoA  04-12-2012
+! Enable Airbus (FTI) VPN to client network 114  TheoA  26-11-2012
+! Permit access to new Windows 7 Airbus VPN servers  TheoA 20-11-2012
+! Add access to transfer.dnw.aero (137.17.112.2), block access to VPN Airbus legacy IPrange   TheoA  14-11-2012
+! Enable Airbus (FTI) VPN to client network 115  TheoA  14-11-2012
+! Disabled all firewall holes from 193.172.204.18, on request of Carl Wolff, Imtech. 12.10.2012 RoelB
+! Add CASA VPN access to client net 3 12.09.2012 RoelB
+! Change CASA VPN for LST (VLAN=15) a bit, since it doesn't work 10.07.2012 RoelB
+! Permit Embraer VPN to client network 12.06.2012 RoelB
+! Mailservers 162.6 en 7 van NLR update 25.05.2012 RoelB en Theo
+! Added IP 213.144.218.64 for Adeneo 22.03.2012 RoelB
+! Fixed spica1 IP for J. Stringer 28.02.2012 RoelB
+! Move USUZU VPN to primary client network 03.02.2012 RoelB
+! Permit ISUZU VPN connection 27.01.2012 RoelB
+! Change the IP address of Koldijk (now Koldijk-Beenen) from 195.35.220.94 to 92.66.191.146
+! Change the IP address of J Stringer to 176.35.171.90, and deny him access to Castor1,Pollux1 (request by Dieter E/Cor Ju) 09.01.2012 RoelB
+! Permit access to Client network SSH from Adeneo, for Snecma 24.11.2011 RoelB
+! Permit access to ONERA from client networks 09.11.2011 RoelB
+! Permit traffic from NLR VoIP network to DNW VoIP network RoelB 25.08.2011
+! Permit access to DLR for nicetrip RoelB 24.08.2011
+! Enable access to One-X Mobile server
+! Enable access to VPN server 
+! Disable access to experimental VPN server to RoelB and JaccovS home
+! Enable access to experimental VPN server to RoelB and JaccovS home
+! Enable access to client net 1 from explorer.embraer.com.br
+! Enable access to llf-gaius-node01 from Imtech 14.03.2011 RoelB
+! Enable goodrich VPN to client networks RoelB 16.02.2011
+! Enable airbus VPN to client networks RoelB 14.02.2011
+! Enable monitoring traffic from DMZ   RoelB 02.02.2011
+! Enable access to nop-nfs-server1 and nop-nfs-server2 from Imtech 26.01.2011 RoelB
+! Enable access of CASA VPN servers to VLAN 15 (LST #2) AHS 26.01.2011
+! Disable access of AEDS VPN servers to VLAN 15 (LST #2) AHS 26.01.2011
+! Open Imtech VPN server for client1 vlan 04.01.2011 RoelB
+! Closed Airbus remote flap hole again 12.11.2010 RoelB
+! Changed IP address for monitoring machine monitoring.dnw.aero to 116 fixed range 09.11.2010 RoelB
+! Added new IPs for extra NLR domain servers and removed inactive DNW domain servers 04.11.2010 RoelB
+! Add logging and permit ICMP ping for Airbus SSH connection to remote flap control system RoelB 2010.10.15
+! Permit access of Airbus SSH connection to remote flap control system RoelB 2010.10.15, changed remote IP
+! Changed IP numbers for Koldijk remote access (provider change) D.K. 12.10.2010
+! Enable all traffic from Airbus Bremen VPN server (195.124.119.123) instead of individual ports. For debugging R.B. 12.10.2010
+! Enable access of Airbus VPN servers to VLAN 15 (LST #2) AHS 08.10.2010
+! Disable access of CASA VPN servers to VLAN 15 (LST #2) AHS 08.10.2010
+! Permit access from Roel Baardman home to monitoring.dnw.aero port 22,3000 and 80 R.B. 01.10.2010
+! Permit access from ASD to netflow monitoring on 137.17.118.80 9992/udp and 137.17.118.66 9996/udp R.B. 30.09.2010
+! Permit access to another Imtech VPN server to ASD R.B. 29.09.2010
+! permit access Imtech C. Wolff to LST KISS #21/22 D.K. 21.09.10
+! Enable access of Ale Bosma, Cofeley to Airco PC D.K. 31.8.2010
+! Enable access of IMTECH to NFS server proto D.K. 24.8.2010
+! Disable access of RR VPN servers to VLAN 53  D.K. 26.7.2010
+! Enable access NLR to POLARIS/SIRIUS for adress book synch D.K. 4.6.2010
+! Enable access of RR VPN servers to VLAN 53  D.K. 25.5.2010
+! Enable access of CASA VPN servers to VLAN 52  D.K. 23.3.2010
+! Enable access of CASA VPN servers to VLAN 15 (LST #2) D.K. 15.3.2010
+! Enable access to Airbus SSH server D.K. 5.3.2010
+! Change access of NLR P. Faasse  D.K. 17.2.2010
+! Permit access to Lufthansa VPN D.K. 5.2.2010
+! Disable recursive DNS requests D.K. 26.10.09
+! Enable ICMP contr. messages (PING) to 104 subnet for NLR Hobbit D.K. 15.10.09
+! Disable access of 192 subnet to DNW D.K. 15.10.09
+! Disable ICMP contr. messages (PING) (should be enabled for tests with external) D.K. 15.10.09
+! Enable access to another Airbus VPN server (update) D.K. 13.10.09
+! Permit access Imtech S. Cranen to LLF KISS #1 D.K. 23.09.09
+! Enable access to CASA VPN server D.K. 1.9.09
+! Permit C. Jutten from Mallorca to 116.0 network D.K. 25.5.09
+! Permit access Bas Rijsw. 118.22 to SODN055U (NLR) X session D.K. 13.5.09
+! Permit access Imtech C. Wolff to GAIUSECF1/2 D.K. 06.05.09
+! Enable new home-IP for C. Jutten, disable H.Holthusen, R. Bersma, R. Souren D.K. 28.4.09
+! Enable another Imtech VPN server D.K. 15.4.09
+! Enable FTP access for On-site webdesign D.K. 14.4.09
+! Enable HTTP to INFO-ATA D.K. 24.2.09
+! Enable/Disable remote desktop access Modest to Antares D.K. 12.1.09
+! permit access Imtech C. Wolff to LST KISS #3 D.K. 17.12.08
+! Enable another new adress for CCI webserver support D.K. 16.12.08
+! Enable access to EADS VPN server (update) D.K. 15.12.08
+! Enable new adress for CCI webserver support D.K. 9.12.08
+! Enable access to another IMTECH VPN server D.K. 17.11.08
+! Enable access to 4x EADS VPN server D.K. 12.11.08
+! Enable access to CASA VPN server D.K. 27.10.08
+! Permit  ABB's RDS servers to 115.131 laptop D.K.18.9.08
+! Permit Airbus VPN also for 115 Client#2 D.K. 2.9.08
+! Access P.Faasse new address D.K. 28.8.08
+! don't check on source with port 53 for other DNS servers than NLR D.K. 20.6.08
+! change peer adress for GUK tunnel D.K. 19.6.08
+! enable VPN tunnel GUK - LLF D.K. 16.06.08
+! Disable remote desktop access Modest to CDS-Test D.K. 12.6.08
+! Enable ONERA JF. Chalivet to ATA-WDF via VPN tunnel D.K. 29.4.08
+! Enable access G. Feenstra on OR wtsn.nlr.nl to print on DNW laser3 D.K. 21.4.08
+! Enable Koldijk, H. Sanders also to remote desktop laptop (.115.132) D.K. 15.4.08 
+! Enable DLR nodes for GoAhead D.K. 18.2.08
+! Enable ONERA JF. Chalivet to ATA-WDF site D.K. 7.2.08
+! enable SMTP from 162.8/9 to MAIL D.K. 22.1.08
+! Enable Koldijk, H. Sanders to FanDrive laptop (.115.130) D.K. 12.12.07
+! disable C. Jutten from home D.K. 7.12.07
+! enable use VPDN client to DLR on 114.0 D.K. 13.11.07
+! change address of NLR backupserver D.K. 9.11.07
+! enable VPN tunnel ASD - LLF D.K. 2.11.07
+! enable access of 137.17.240 subnet D.K. 31.10.07
+! disable access of 137.17.36 subnet D.K. 25.10.07 
+! permit NLR SMTP old/new to DNW MAIL D.K. 23.10.07
+! permit access Imtech C. Wolff to LST KISS #1/2 D.K. 17.10.07
+! Enable access to POLARIS/SIRIUS for adress book synchr. D.K. 17.9.07
+! enable access www to Orion D.K. 30.8.07
+! disable IMAP access to MAIL D.K. 30.8.07
+! enable IMAP access to MAIL D.K. 24.7.07
+! change IP adress Imtech R.Vonk to LST PLC + SCADA D.K. 23.7.07
+! permit access Imtech R.Vonk to LST PLC + SCADA D.K. 21.6.07
+! permit SMTP + IMAP from INFO-3 to MAIL server (EXCHANGE) D.K. 23.5.07
+! permit NLR backupserver to NAS2000 server D.K. 15.5.07 
+! Enable access to Imtech VPN server D.K. 27.4.07
+! permit NLR backupserver to MAIL exchange server D.K. 30.3.07
+! permit remote desktop H.v.Dorp to MAIL,RAS,DC1 D.K. 30.3.07
+! permit HTTPS access to MAIL D.K. 30.3.07
+! permit NLR SMTP to DNW MAIL D.K. 29.3.07
+! change the IP address of PUUR D.K. 29.3.07
+! Permit RAS to POLARIS D.K. 28.3.07
+! Change IP numbers of J. Stringer AVS D.K. 28.3.07
+! Enable try-out Netmeeting with Aermacchi D.K. 22.3.07
+! Enable access to KHP VPN server D.K. 15.3.07
+! Enable access to CASA VPN server D.K. 27.2.07
+! Enable DLR access to ADYN hosts on 115.0 D.K. 22.2.07
+! Add access of DNS server SPIDER (80.200) D.K. 22.2.07
+! Add access PUUR to Orion D.K. 16.2.07
+! Change to access complete 116 - 119 subnet D. K. 8.2.07
+! Change ADYN DLR addr fom 118 -> 115 D.K. 6.2.07
+! Add new DNS server 116.132  D.K. 30.1.07
+! Add access of MS updates to ORION D.K. 25.1.07
+! Add access R.Souren from home D.K. 16.1.07
+! Change IP address V. Heijke   D.K. 3.1.07
+! Add access NLR nameserver 137.17.128.19/28.101/28.102/144.103/144.104  D.K. 2.1.2007
+! Base config Access Lists for CISCO 3825  DK. 29.1.2006
+! List was derived from CISCO4500M list
+!
+! Interface to NLR backbone in building 41
+! Interface GI0/0/0   137.17.104.82
+! Access group 110 = out | access group 111 = in
+! fiber connection via high-speed converter, speed 1Gb
+!
+! Access-list 111 controls INCOMING traffic to GI0/0/0 from NLR network 
+! no access-list 111
+! Version
+access-list 111 remark version 186   19-01-2017   TheoA
+!
+!
+!
+! Permit TCP return traffic
+access-list 111 permit tcp any 137.17.112.0 0.0.7.255 established
+! Permit FTP return traffic
+access-list 111 permit tcp any eq ftp-data 137.17.116.0 0.0.1.255 gt 1023
+! for Infocenter performance tests
+! access-list 111 permit tcp any eq ftp-data 137.17.112.0 0.0.1.255 gt 1023
+!
+! Permit traffic from NLR VoIP network to DNW VoIP network RoelB 25.08.2011
+!access-list 111 permit ip 137.17.140.0 0.0.0.255 192.168.142.0 0.0.255.255
+access-list 111 permit ip 137.17.0.0 0.0.255.255 192.168.142.0 0.0.0.255
+!
+! Allow VLAN 2/3 access to 137.17.115.61 for testing  29-10-2014  TheoA
+!access-list 111 permit tcp 137.17.116.0 0.0.0.255 host 137.17.115.60
+!access-list 111 permit ip 137.17.116.0 0.0.0.255 host 137.17.115.60
+!access-list 111 permit tcp 137.17.116.0 0.0.0.255 host 137.17.115.61
+!access-list 111 permit ip 137.17.116.0 0.0.0.255 host 137.17.115.61
+!
+! Add NLR TV / webcams to DNW op poort 8090   29-11-2013  TheoA
+access-list 111 permit tcp 137.17.0.0 0.0.255.255 eq 8090 137.17.0.0 0.0.255.255
+!
+! Enable access to VLAN 136   TheoA  7-3-2016
+access-list 111 permit ip 137.17.0.0 0.0.255.255 192.168.136.0 0.0.0.255
+!
+! Enable access to video LAN 145   TheoA  11-07-2013
+access-list 111 permit tcp 137.17.0.0 0.0.255.255 eq www 192.168.145.0 0.0.0.255
+!
+! Add Paul Admiraal from home  27-10-2016  TheoA
+access-list 111 permit tcp host 80.101.27.215 host 137.17.118.40
+!
+! Allow Remote Desktop access to WIN7-ESX from NLR   09-04-2013  TheoA
+access-list 111 permit tcp 137.17.0.0 0.0.255.255 eq 3389 host 137.17.116.247
+!
+! Permit NLR Terminal Server access to UniFLOW-printserver DNW  13-03-2013  TheoA
+access-list 111 permit tcp host 137.17.28.9 host 137.17.116.54 eq 515
+access-list 111 permit udp host 137.17.28.9 host 137.17.116.54 eq 9007
+access-list 111 permit udp host 137.17.28.9 host 137.17.116.54 eq 47545
+!
+! Permit Peter Faasse (137.17.151.230) access to 137.17.114.100/101  TheoA  04-12-2012
+!access-list 111 permit ip host 137.17.151.230 host 137.17.114.100
+!access-list 111 permit ip host 137.17.151.230 host 137.17.114.101
+!access-list 111 permit tcp host 137.17.151.230 host 137.17.114.100
+!access-list 111 permit tcp host 137.17.151.230 host 137.17.114.101
+!
+! Permit access to DLR  26-08-2015  TheoA
+access-list 111 permit tcp host 129.247.48.38 host 137.17.114.101 eq 22
+access-list 111 permit tcp host 129.247.48.65 host 137.17.114.101 eq 22
+access-list 111 permit tcp host 129.247.48.92 host 137.17.114.101 eq 22
+access-list 111 permit tcp host 129.247.11.150 host 137.17.114.101 eq 22
+access-list 111 permit tcp host 129.247.49.53 host 137.17.114.101 eq 22
+access-list 111 permit tcp host 129.247.48.38 host 137.17.114.101 eq 22222
+access-list 111 permit tcp host 129.247.48.65 host 137.17.114.101 eq 22222
+access-list 111 permit tcp host 129.247.48.92 host 137.17.114.101 eq 22222
+access-list 111 permit tcp host 129.247.11.150 host 137.17.114.101 eq 22222
+access-list 111 permit tcp host 129.247.49.53 host 137.17.114.101 eq 22222
+
+access-list 111 permit tcp host 129.247.48.38 host 137.17.115.101 eq 22
+access-list 111 permit tcp host 129.247.48.65 host 137.17.115.101 eq 22
+access-list 111 permit tcp host 129.247.48.92 host 137.17.115.101 eq 22
+access-list 111 permit tcp host 129.247.11.150 host 137.17.115.101 eq 22
+access-list 111 permit tcp host 129.247.49.53 host 137.17.115.101 eq 22
+access-list 111 permit tcp host 129.247.48.38 host 137.17.115.101 eq 22222
+access-list 111 permit tcp host 129.247.48.65 host 137.17.115.101 eq 22222
+access-list 111 permit tcp host 129.247.48.92 host 137.17.115.101 eq 22222
+access-list 111 permit tcp host 129.247.11.150 host 137.17.115.101 eq 22222
+access-list 111 permit tcp host 129.247.49.53 host 137.17.115.101 eq 22222
+!
+! Permit access to DLR for nicetrip RoelB 24.08.2011
+!access-list 111 permit ip host 83.160.64.165 host 137.17.114.103
+!access-list 111 permit tcp host 129.247.48.38 host 137.17.114.103 eq 22
+!access-list 111 permit tcp host 129.247.48.79 host 137.17.114.103 eq 22
+!access-list 111 permit tcp host 129.247.48.88 host 137.17.114.103 eq 22
+!access-list 111 permit tcp host 129.247.48.138 host 137.17.114.103 eq 22
+!access-list 111 permit tcp host 129.247.49.24 host 137.17.114.103 eq 22
+!access-list 111 permit tcp host 129.247.49.168 host 137.17.114.103 eq 22
+!access-list 111 permit tcp host 129.247.10.146 host 137.17.114.103 eq 22
+!access-list 111 permit tcp host 129.247.10.150 host 137.17.114.103 eq 22
+
+!access-list 111 permit tcp host 129.247.48.38 host 137.17.114.103 range 5901 5905
+!access-list 111 permit tcp host 129.247.48.79 host 137.17.114.103 range 5901 5905
+!access-list 111 permit tcp host 129.247.48.88 host 137.17.114.103 range 5901 5905
+!access-list 111 permit tcp host 129.247.48.138 host 137.17.114.103 range 5901 5905
+!access-list 111 permit tcp host 129.247.49.24 host 137.17.114.103 range 5901 5905
+!access-list 111 permit tcp host 129.247.49.168 host 137.17.114.103 range 5901 5905
+!access-list 111 permit tcp host 129.247.10.146 host 137.17.114.103 range 5901 5905
+!access-list 111 permit tcp host 129.247.10.150 host 137.17.114.103 range 5901 5905
+
+!access-list 111 permit ip host 83.160.64.165 host 137.17.115.103
+!access-list 111 permit tcp host 129.247.48.38 host 137.17.115.103 eq 22
+!access-list 111 permit tcp host 129.247.48.79 host 137.17.115.103 eq 22
+!access-list 111 permit tcp host 129.247.48.88 host 137.17.115.103 eq 22
+!access-list 111 permit tcp host 129.247.48.138 host 137.17.115.103 eq 22
+!access-list 111 permit tcp host 129.247.49.24 host 137.17.115.103 eq 22
+!access-list 111 permit tcp host 129.247.49.168 host 137.17.115.103 eq 22
+!access-list 111 permit tcp host 129.247.10.146 host 137.17.115.103 eq 22
+!access-list 111 permit tcp host 129.247.10.150 host 137.17.115.103 eq 22
+
+!access-list 111 permit tcp host 129.247.48.38 host 137.17.115.103 range 5901 5905
+!access-list 111 permit tcp host 129.247.48.79 host 137.17.115.103 range 5901 5905
+!access-list 111 permit tcp host 129.247.48.88 host 137.17.115.103 range 5901 5905
+!access-list 111 permit tcp host 129.247.48.138 host 137.17.115.103 range 5901 5905
+!access-list 111 permit tcp host 129.247.49.24 host 137.17.115.103 range 5901 5905
+!access-list 111 permit tcp host 129.247.49.168 host 137.17.115.103 range 5901 5905
+!access-list 111 permit tcp host 129.247.10.146 host 137.17.115.103 range 5901 5905
+!access-list 111 permit tcp host 129.247.10.150 host 137.17.115.103 range 5901 5905
+!Theo 03-04-2013
+!access-list 111 permit tcp host 129.247.49.44 host 137.17.114.101 eq 22
+!access-list 111 permit tcp host 129.247.49.53 host 137.17.114.101 eq 22
+!access-list 111 permit tcp host 129.247.48.88 host 137.17.114.101 eq 22
+!access-list 111 permit tcp host 129.247.48.38 host 137.17.114.101 eq 22
+!access-list 111 permit tcp host 129.247.48.231 host 137.17.114.101 eq 22
+!access-list 111 permit tcp host 129.247.11.102 host 137.17.114.101 eq 22
+!access-list 111 permit tcp host 129.247.11.150 host 137.17.114.101 eq 22
+!RoelB 05-04-2013
+!access-list 111 permit tcp host 129.247.49.44 host 137.17.115.101 eq 22
+!access-list 111 permit tcp host 129.247.49.53 host 137.17.115.101 eq 22
+!access-list 111 permit tcp host 129.247.48.88 host 137.17.115.101 eq 22
+!access-list 111 permit tcp host 129.247.48.38 host 137.17.115.101 eq 22
+!access-list 111 permit tcp host 129.247.48.231 host 137.17.115.101 eq 22
+!access-list 111 permit tcp host 129.247.11.102 host 137.17.115.101 eq 22
+!access-list 111 permit tcp host 129.247.11.150 host 137.17.115.101 eq 22
+
+!A.Villa VPN access  TheoA 3-9-2013
+!access-list 111 permit tcp host 80.228.67.90 host 137.17.115.156
+
+! Enable monitoring traffic from DMZ   RoelB 02.02.2011
+access-list 111 permit tcp 137.17.112.0 0.0.1.255 host 137.17.116.140 eq 1984
+
+!
+access-list 111 permit tcp any eq ftp-data 137.17.114.0 0.0.1.255 gt 1023
+access-list 111 permit tcp any eq ftp-data 137.17.118.0 0.0.1.255 gt 1023
+!
+! Permit NTP to DNW subnets 118,116,114,112 (System-time synchr.) from TIME-NOP/SPIDER2
+access-list 111 permit udp 137.17.248.0 0.0.0.3  137.17.112.0 0.0.7.255 eq ntp
+access-list 111 permit udp 137.17.248.0 0.0.0.3  host 137.17.104.82 eq ntp
+access-list 111 permit udp host 137.17.80.230  host 137.17.116.132 eq ntp
+access-list 111 permit udp host 137.17.80.230  host 137.17.116.245 eq ntp
+access-list 111 permit udp host 137.17.80.230  host 137.17.240.3 eq ntp
+!
+!-------------------------------------------------------------------------
+! Added new IPs for extra NLR domain servers and removed inactive DNW domain servers 04.11.2010 RoelB
+!  new DNS servers NLR
+! DNS (20060125: extended for NLR) for subnet 116.0/22
+! access-list 111 permit ip host 137.17.80.200 host 137.17.116.4 
+! access-list 111 permit ip host 137.17.28.101 host 137.17.116.4 
+! access-list 111 permit ip host 137.17.28.102 host 137.17.116.4 
+! access-list 111 permit ip host 137.17.28.200 host 137.17.116.4 
+! access-list 111 permit ip host 137.17.128.19 host 137.17.116.4 
+! access-list 111 permit ip host 137.17.144.103 host 137.17.116.4  
+! access-list 111 permit ip host 137.17.144.104 host 137.17.116.4  
+! access-list 111 permit ip host 137.17.144.200 host 137.17.116.4  
+!
+access-list 111 permit ip host 137.17.80.200 host 137.17.116.132  
+access-list 111 permit ip host 137.17.28.101 host 137.17.116.132  
+access-list 111 permit ip host 137.17.28.102 host 137.17.116.132  
+access-list 111 permit ip host 137.17.28.200 host 137.17.116.132  
+access-list 111 permit ip host 137.17.128.19 host 137.17.116.132  
+access-list 111 permit ip host 137.17.144.103 host 137.17.116.132  
+access-list 111 permit ip host 137.17.144.104 host 137.17.116.132  
+access-list 111 permit ip host 137.17.144.200 host 137.17.116.132  
+access-list 111 permit ip host 137.17.28.106 host 137.17.116.132  
+access-list 111 permit ip host 137.17.28.107 host 137.17.116.132 
+access-list 111 permit ip host 137.17.28.204 host 137.17.116.132
+access-list 111 permit ip host 137.17.28.205 host 137.17.116.132 
+access-list 111 permit ip host 137.17.144.63 host 137.17.116.132  
+access-list 111 permit ip host 137.17.144.19 host 137.17.116.132 
+access-list 111 permit ip host 137.17.144.204 host 137.17.116.132  
+access-list 111 permit ip host 137.17.144.205 host 137.17.116.132   
+!
+access-list 111 permit ip host 137.17.80.200 host 137.17.116.245  
+access-list 111 permit ip host 137.17.28.101 host 137.17.116.245  
+access-list 111 permit ip host 137.17.28.102 host 137.17.116.245  
+access-list 111 permit ip host 137.17.28.200 host 137.17.116.245  
+access-list 111 permit ip host 137.17.128.19 host 137.17.116.245  
+access-list 111 permit ip host 137.17.144.103 host 137.17.116.245  
+access-list 111 permit ip host 137.17.144.104 host 137.17.116.245  
+access-list 111 permit ip host 137.17.144.200 host 137.17.116.245  
+access-list 111 permit ip host 137.17.28.106 host 137.17.116.245  
+access-list 111 permit ip host 137.17.28.107 host 137.17.116.245  
+access-list 111 permit ip host 137.17.28.204 host 137.17.116.245 
+access-list 111 permit ip host 137.17.28.205 host 137.17.116.245 
+access-list 111 permit ip host 137.17.144.63 host 137.17.116.245  
+access-list 111 permit ip host 137.17.144.19 host 137.17.116.245  
+access-list 111 permit ip host 137.17.144.204 host 137.17.116.245
+access-list 111 permit ip host 137.17.144.205 host 137.17.116.245
+!
+! access-list 111 permit ip host 137.17.128.19 host 137.17.116.12  
+! access-list 111 permit ip host 137.17.28.200 host 137.17.116.12  
+! access-list 111 permit ip host 137.17.144.200 host 137.17.116.12  
+!
+!-------------------------------------------------------------------------
+!
+! Permit other DNS servers (outside the NLR.NL domain) to send updates
+! to HP110 (recursive DNS implementation) don't check on source
+!access-list 111 permit udp any  host 137.17.116.4 eq domain
+!access-list 111 permit udp any  host 137.17.116.12 eq domain
+!access-list 111 permit udp any  host 137.17.116.132 eq domain
+!access-list 111 permit udp any  host 137.17.116.245 eq domain
+!access-list 111 permit udp any  host 137.17.117.130 eq domain
+!
+!
+! SNMP messages from NLR are permitted
+access-list 111 permit udp host 137.17.128.19 host 137.17.104.82 eq snmp 
+!!access-list 111 permit udp 137.17.240.0 0.0.7.255  137.17.116.0 0.0.3.255
+!
+
+! Mailservers 162.6 en 7 van NLR update 25.05.2012 RoelB en Theo
+
+! SMTP messages from NLR-SMTP server (new/old) to k3 and OWA/MAIL are permitted
+! from 162.8/9 to MAIL
+access-list 111 permit tcp host 137.17.162.2 host 137.17.117.130 eq smtp 
+access-list 111 permit tcp host 137.17.144.8 host 137.17.117.130 eq smtp 
+access-list 111 permit tcp host 137.17.144.8 host 137.17.116.60 eq smtp
+access-list 111 permit tcp host 137.17.144.8 host 137.17.116.61 eq smtp
+access-list 111 permit tcp host 137.17.162.6 host 137.17.116.60 eq smtp
+access-list 111 permit tcp host 137.17.162.6 host 137.17.116.61 eq smtp
+access-list 111 permit tcp host 137.17.162.7 host 137.17.116.60 eq smtp
+access-list 111 permit tcp host 137.17.162.7 host 137.17.116.61 eq smtp
+access-list 111 permit tcp host 137.17.162.8 host 137.17.116.60 eq smtp
+access-list 111 permit tcp host 137.17.162.8 host 137.17.116.61 eq smtp
+access-list 111 permit tcp host 137.17.162.9 host 137.17.116.60 eq smtp
+access-list 111 permit tcp host 137.17.162.9 host 137.17.116.61 eq smtp
+access-list 111 permit tcp host 137.17.162.10 host 137.17.116.60 eq smtp
+access-list 111 permit tcp host 137.17.162.10 host 137.17.116.61 eq smtp
+access-list 111 permit tcp host 137.17.162.11 host 137.17.116.60 eq smtp
+access-list 111 permit tcp host 137.17.162.11 host 137.17.116.61 eq smtp
+access-list 111 permit tcp host 137.17.106.34 host 137.17.116.60 eq smtp
+access-list 111 permit tcp host 137.17.106.34 host 137.17.116.61 eq smtp
+access-list 111 permit tcp host 137.17.106.37 host 137.17.116.60 eq smtp
+access-list 111 permit tcp host 137.17.106.37 host 137.17.116.61 eq smtp
+!
+! SMTP + IMAP messages from INFO-3 to MAIL are permitted + FTP to fileserver
+!access-list 111 permit tcp host 137.17.112.5 host 137.17.116.246 eq smtp 
+!access-list 111 permit tcp host 137.17.112.5 host 137.17.116.60 eq smtp
+!access-list 111 permit tcp host 137.17.112.5 host 137.17.116.61 eq smtp 
+!access-list 111 permit tcp host 137.17.112.5 host 137.17.116.246 eq 143 
+!access-list 111 permit tcp host 137.17.112.5 host 137.17.116.60 eq 143 
+!access-list 111 permit tcp host 137.17.112.5 host 137.17.116.61 eq 143
+!access-list 111 permit tcp host 137.17.112.5 host 137.17.116.51 range 20 21
+!access-list 111 permit ip host 137.17.112.5 host 137.17.116.166 
+!access-list 111 permit tcp host 137.17.112.5 host 137.17.116.166 eq 200 
+!
+! Add MySQL port 3306 traffic Infocenter/Info-3  26-7-2013  TheoA
+!access-list 111 permit tcp host 137.17.112.5 host 137.17.116.15 eq 3306 
+!
+! Access via HTTPS to MAIL
+access-list 111 permit tcp any host 137.17.116.60 eq 443 
+access-list 111 permit tcp any host 137.17.116.61 eq 443
+!access-list 111 permit tcp any host 137.17.116.246 eq 143 
+!
+! HST access to DNW
+! access-list 111 permit ip 137.17.192.0 0.0.1.255 137.17.116.0 0.0.3.255
+access-list 111 permit ip 137.17.240.0 0.0.7.255 137.17.116.0 0.0.3.255
+! VPN tunnel ASD - LLF
+access-list 111 permit 50 host 137.17.230.148 host 137.17.104.82 
+!access-list 111 permit 51 host 137.17.230.148 host 137.17.104.82 
+!access-list 111 permit 57 host 137.17.230.148 host 137.17.104.82 
+access-list 111 permit udp host 137.17.230.148 host 137.17.104.82 eq 500 
+!access-list 111 permit udp host 137.17.230.148 host 137.17.104.82 eq 10000 
+!
+
+! VPN tunnel GUK - LLF
+access-list 111 permit 50 host 195.71.15.94 host 137.17.104.82 
+access-list 111 permit udp host 195.71.15.94 host 137.17.104.82 eq 500 
+!
+! NLR M. vd. Berg SHERLOCK for DNW_MPR (CISCO1) Telnet
+access-list 111 permit tcp host 137.17.128.19  host 137.17.104.82 eq telnet
+!
+! NLR Sijtsma  to HP110 (FTP)
+!access-list 111 permit tcp host 137.17.84.47 host 137.17.116.4 range 20 21
+! NLR Peter Faasse  to 116 subnet to test SDA
+!access-list 111 permit tcp host 137.17.5.167 137.17.116.0 0.0.1.255
+
+!access-list 111 permit tcp host 137.17.28.35 host 137.17.118.22 
+!access-list 111 permit udp host 137.17.28.35 host 137.17.118.22 
+
+!
+!
+! HST full  access to LLF 
+! access-list 111 permit ip 137.17.36.0 0.0.0.255 137.17.116.0 0.0.3.255
+!
+! Permit J. Hakkaart and W. Hendriks via ALIMA to FTP/Telnet to webserver / Infoserver
+! access-list 111 permit tcp host 137.17.36.10 host 137.17.112.2
+! access-list 111 permit tcp host 137.17.36.10 host 137.17.112.3
+!
+! allow GUK VPN + BS
+access-list 111 permit ip 195.71.72.0 0.0.1.255 137.17.116.0 0.0.3.255  
+!
+! for Infocenter performance test
+! access-list 111 permit tcp 195.71.72.0 0.0.1.255 host 137.17.112.5 
+!
+! ABN/AMRO electronic banking
+!access-list 111 permit tcp host 193.172.44.45 137.17.116.0 0.0.0.255 range 20 21 
+!access-list 111 permit tcp host 194.151.107.44 137.17.116.0 0.0.0.255 range 20 21  
+!
+! ONERA Netmeeting PC and VIDEO-CONFERENCE via VPN tunnel
+!access-list 111 permit ip host 172.24.17.11 host 137.17.116.208 
+!
+! ONERA JF. Chalivet FTP to ATA-WDF server and via VPN tunnel
+access-list 111 permit tcp host 172.24.17.213 host 137.17.112.13 range 20 21 
+access-list 111 permit ip host 172.24.17.11 host 137.17.112.13 
+!
+! LM JSF Inlet VPN tunnel to CLient net
+! access-list 111 permit ip 137.32.202.0 0.0.0.255   137.17.114.0 0.0.0.255
+!
+
+! Enable IPsec from client networks to any VPN server 07-05-2013 RoelB
+access-list 111 permit 50  any  137.17.114.0 0.0.1.255
+access-list 111 permit 51 any   137.17.114.0 0.0.1.255
+access-list 111 permit udp any  137.17.114.0 0.0.1.255 eq 500
+access-list 111 permit udp any eq 5000 137.17.114.0 0.0.1.255
+access-list 111 permit udp any  137.17.114.0 0.0.1.255 eq 1972
+! Enable some more IPsec ports from client networks for Cisco VPDN IPsec 11-06-2013 RoelB
+access-list 111 permit udp any  137.17.114.0 0.0.1.255 eq 4500
+access-list 111 permit udp any eq 4500 137.17.114.0 0.0.1.255 
+access-list 111 permit udp any  137.17.114.0 0.0.1.255 eq 10000
+access-list 111 permit udp any eq 10000  137.17.114.0 0.0.1.255 
+access-list 111 permit tcp any  137.17.114.0 0.0.1.255 eq 10000
+access-list 111 permit tcp any eq 10000  137.17.114.0 0.0.1.255 
+access-list 111 permit udp any eq 500 137.17.114.0 0.0.1.255
+! Enable port 8072 from client network. Introduced for DeHarde, supplier of an Embraer model fuselage 2013-06-26 RoelB
+access-list 111 permit udp any 137.17.114.0 0.0.1.255 eq 8072
+access-list 111 permit tcp any 137.17.114.0 0.0.1.255 eq 8072
+! Enable port 1972 & 443 (esp-encaps) for Airbus 2013-11-05 RoelB
+access-list 111 permit udp any 137.17.114.0 0.0.1.255 eq 1972
+access-list 111 permit tcp any 137.17.114.0 0.0.1.255 eq 443
+
+!!
+! Closed Airbus remote flap hole again 12.11.2010 RoelB
+! Permit access of Airbus SSH connection to remote flap control system RoelB 2010.10.15
+! access-list 111 permit tcp  any host 137.17.115.155 eq 22
+! access-list 111 permit icmp any host 137.17.115.155
+
+! Enable access to One-X Mobile server
+access-list 111 permit tcp any host 137.17.112.20 eq 80
+access-list 111 permit tcp any host 137.17.112.20 eq 443
+
+! Enable access to VPN server 
+access-list 111 permit tcp any host 137.17.116.252 eq 1194
+! Disable access to experimental VPN server to RoelB and JaccovS home
+! Enable access to experimental VPN server to RoelB and JaccovS home
+! access-list 111 permit tcp host 92.254.124.128 host 137.17.116.252 eq 1194
+! access-list 111 permit tcp host 83.160.64.165 host 137.17.116.252 eq 1194
+
+! Permit access to Client network SSH from Adeneo, for Snecma 24.11.2011 RoelB
+! access-list 111 permit tcp 78.155.151.0 0.0.0.255 137.17.115.0 0.0.0.255 eq 22
+! access-list 111 permit tcp 78.155.151.0 0.0.0.255 137.17.115.0 0.0.0.255 eq 8080
+!access-list 111 permit tcp host 213.144.218.64 137.17.115.0 0.0.0.255 eq 22
+!access-list 111 permit tcp host 213.144.218.64 137.17.115.0 0.0.0.255 eq 8080
+!
+! Permit access to another Imtech VPN server to ASD
+!access-list 111 permit esp host 193.172.204.57	  137.17.240.0 0.0.1.255
+!access-list 111 permit udp host 193.172.204.57 eq isakmp 137.17.240.0 0.0.1.255
+!access-list 111 permit udp host 193.172.204.57 137.17.240.0 0.0.1.255 eq 10000
+!access-list 111 permit udp host 193.172.204.57 137.17.240.0 0.0.1.255 eq 4500
+
+! Permit access to another Imtech VPN server to ASD .58
+!access-list 111 permit esp host 193.172.204.58	  137.17.240.0 0.0.1.255
+!access-list 111 permit udp host 193.172.204.58 eq isakmp 137.17.240.0 0.0.1.255
+!access-list 111 permit udp host 193.172.204.58 137.17.240.0 0.0.1.255 eq 10000
+!access-list 111 permit udp host 193.172.204.58 137.17.240.0 0.0.1.255 eq 4500
+
+! Permit access from ASD to netflow monitoring on 137.17.118.80 9992/udp R.B. 30.09.2010
+!access-list 111 permit udp host 137.17.230.148 host 137.17.118.80 eq 9992
+!access-list 111 permit udp host 137.17.230.148 host 137.17.118.66 eq 9996
+
+! Permit DLR BS to DLR Client-01,02,03 M. Roth
+!access-list 111 permit tcp host 129.247.48.88 host 137.17.114.101
+!access-list 111 permit tcp host 129.247.48.88 host 137.17.114.102
+!access-list 111 permit tcp host 129.247.48.88 host 137.17.114.103
+!
+! Permit DLR BS to DLR GoAhead server on 115.103  M. Roth ++
+! rem. nodes (129.247.11.150, 129.247.48.79, 129.247.48.83, 129.247.48.88, 129.247.48.138
+! 129.247.48.204)
+! access-list 111 permit tcp  129.247.48.0 0.0.0.255 host 137.17.115.103 eq 22 
+! access-list 111 permit tcp  129.247.48.0 0.0.0.255 host 137.17.115.103 range 5901 5906 
+! access-list 111 permit tcp  129.247.48.0 0.0.0.255 host 137.17.115.103 range 5910 5911 
+! access-list 111 permit tcp  host 129.247.11.150 host 137.17.115.103 eq 22 
+! access-list 111 permit tcp  host 129.247.11.150 host 137.17.115.103 range 5901 5906 
+! access-list 111 permit tcp  host 129.247.11.150 host 137.17.115.103 range 5910 5911 
+
+! Permit DLR BS to DLR GoAhead server on 114.103  for M. Roth ++
+! rem. nodes (129.247.11.150, 129.247.48.79, 129.247.48.83, 129.247.48.88, 129.247.48.138
+! 129.247.48.204)
+! access-list 111 permit tcp  129.247.48.0 0.0.0.255 host 137.17.114.103 eq 22 
+! access-list 111 permit tcp  129.247.48.0 0.0.0.255 host 137.17.114.103 range 5901 5906 
+! access-list 111 permit tcp  129.247.48.0 0.0.0.255 host 137.17.114.103 range 5910 5911 
+! access-list 111 permit tcp  host 129.247.11.150 host 137.17.114.103 eq 22 
+! access-list 111 permit tcp  host 129.247.11.150 host 137.17.114.103 range 5901 5906 
+! access-list 111 permit tcp  host 129.247.11.150 host 137.17.114.103 range 5910 5911 
+
+! Permit Northrop to LST Client-PC Hugo ....
+!access-list 111 permit tcp host 140.229.94.181 host 137.17.117.231
+!access-list 111 permit tcp host 140.229.94.98  host 137.17.117.231
+!access-list 111 permit tcp host 192.58.199.184 host 137.17.117.231
+!access-list 111 permit udp host 192.58.199.184 host 137.17.117.231
+!access-list 111 permit tcp host 138.162.0.42   host 137.17.117.231
+!access-list 111 permit udp host 138.162.0.42   host 137.17.117.231
+
+! HTTP to webserver WWW.DNW.NLR.NL and ORION.DNW.AERO
+access-list 111 permit tcp any host 137.17.112.2  eq 443
+!access-list 111 permit tcp any host 137.17.112.3  eq 443
+access-list 111 permit tcp any host 137.17.112.12  eq www
+access-list 111 permit tcp any host 137.17.112.12  eq 443
+access-list 111 permit tcp any host 137.17.112.13  eq www
+! HTTP to INTRAnet servers INFO.DNW.NLR.NL, INTREXX...
+! will be explicitly filtered in access-list 140
+! HTTPS to INFO-3/INFO-ATA + HTTP
+!access-list 111 permit tcp any host 137.17.112.3  eq www
+!access-list 111 permit tcp any host 137.17.112.5  eq 443
+!access-list 111 permit tcp any host 137.17.112.7  eq 443
+!access-list 111 permit tcp any host 137.17.112.6  eq www
+!access-list 111 permit tcp any host 137.17.112.10  eq 443 
+!access-list 111 permit tcp any host 137.17.112.11  eq 443 
+!access-list 111 permit tcp any host 137.17.112.12  eq 443
+!access-list 111 permit tcp any host 137.17.112.12  eq www
+! For MS updates
+! access-list 111 permit ip any host 137.17.112.13 
+!
+!
+! Permit access from license server DLR to DLR-FM Helinovi
+! access-list 111 permit 47 host 129.247.48.3 137.17.114.0 0.0.0.255 
+! Permit access from G. Feenstra home to PIV-RAID
+!access-list 111 permit tcp host 213.10.117.94 host 137.17.117.43 eq 3389
+! Permit access G. Feenstra on OR wtsn.nlr.nl to printer laser3.dnw.aero
+! access-list 111 permit tcp host 137.17.28.36 host 137.17.116.179 eq 9100 
+!
+! Permit access via "RAS" to POLARIS en RASTEST 	01-0402016  TheoA
+! Change RAS access to Polaris to 137.17.116.248	03-10-2014  TheoA
+! (Uitleg: isakmp=udp 500;  pptp=tcp 1723;  l2tp traffic=udp 1701;  gre=protocol ID=47; IPSec NAT-T=udp 4500;sstp=443)
+;access-list 111 permit tcp any host 137.17.116.219 eq 1723
+;access-list 111 permit gre any host 137.17.116.219 
+access-list 111 permit tcp any host 137.17.118.240 eq 443
+;access-list 111 permit udp any host 137.17.116.219 eq 500
+;access-list 111 permit udp any host 137.17.116.219 eq 1701
+access-list 111 permit tcp any host 137.17.116.248 eq 1723
+access-list 111 permit gre any host 137.17.116.248 
+!
+! Permit access NLR to Domain Controllers for Exchange address book synchr.
+!access-list 111 permit tcp host 137.17.28.46 host 137.17.116.245 
+!access-list 111 permit tcp host 137.17.28.46 host 137.17.116.132
+access-list 111 permit tcp host 137.17.28.87 host 137.17.116.245 
+access-list 111 permit tcp host 137.17.28.87 host 137.17.116.132
+access-list 111 permit tcp host 137.17.29.87 host 137.17.116.245 
+access-list 111 permit tcp host 137.17.29.87 host 137.17.116.132
+!
+! Permit access to MAIL/EXCH2010/NAS2000 for backup by NLR
+!access-list 111 permit tcp host 137.17.28.33 host 137.17.116.61 eq 1501 
+!access-list 111 permit tcp host 137.17.28.33 host 137.17.116.61 eq 1581 
+!access-list 111 permit tcp host 137.17.28.33 host 137.17.116.61 range 1548 1550 
+!access-list 111 permit tcp host 137.17.28.33 host 137.17.116.60 eq 1501 
+!access-list 111 permit tcp host 137.17.28.33 host 137.17.116.60 eq 1581 
+!access-list 111 permit tcp host 137.17.28.33 host 137.17.116.60 range 1548 1550 
+!access-list 111 permit tcp host 137.17.28.33 host 137.17.116.231 eq 1501 
+!access-list 111 permit tcp host 137.17.28.33 host 137.17.116.231 eq 1581 
+!access-list 111 permit tcp host 137.17.28.33 host 137.17.116.231 range 1548 1550 
+!	
+! Permit access J. Stringer to SPICA1, CASTOR1,POLLUX1
+access-list 111 permit ip host 176.35.171.90 host 137.17.116.22
+!
+! access-list 111 permit tcp host 176.35.171.90 host 137.17.116.21  
+! access-list 111 permit tcp host 81.86.245.212 host 137.17.116.23  
+!
+! Permit remote desktop Hugo v. Dort to Exch2013, RAS, DC's
+access-list 111 permit tcp host 137.17.20.33 host 137.17.116.248 eq 3389 
+access-list 111 permit tcp host 137.17.20.33 host 137.17.116.60 eq 3389 
+access-list 111 permit tcp host 137.17.20.33 host 137.17.116.61 eq 3389
+access-list 111 permit tcp host 137.17.20.33 host 137.17.116.245 eq 3389 
+access-list 111 permit tcp host 137.17.20.33 host 137.17.116.132 eq 3389 
+!/
+! Add access to Cisco ASA remote.dnw.aero + radius (Safenet) + RASTEST  29-04-2014/1-4-2016  TheoA
+access-list 111 permit tcp any host 137.17.112.50 eq 443
+access-list 111 permit udp 109.73.120.0 0.0.0.255 eq 1812 host 137.17.112.50
+access-list 111 permit udp 69.20.230.0 0.0.0.255 eq 1812 host 137.17.112.50
+access-list 111 permit udp 109.73.120.0 0.0.0.255 eq 1812 host 137.17.118.240
+access-list 111 permit udp 69.20.230.0 0.0.0.255 eq 1812 host 137.17.118.240
+!
+! Aanvulling access Cisco ASA remote.dnw.aero to Terminus tbv VPN client  06-11-2014  TheoA
+access-list 111 permit tcp host 137.17.116.53 137.17.112.128 0.0.0.127 eq 443
+access-list 111 permit tcp host 137.17.116.53 137.17.112.128 0.0.0.127 eq 3389
+access-list 111 permit icmp host 137.17.116.53 137.17.112.128 0.0.0.127
+access-list 111 permit tcp host 137.17.116.132 137.17.112.128 0.0.0.127 eq 443
+access-list 111 permit tcp host 137.17.116.132 137.17.112.128 0.0.0.127 eq 3389
+access-list 111 permit icmp host 137.17.116.132 137.17.112.128 0.0.0.127
+access-list 111 permit tcp host 137.17.116.245 137.17.112.128 0.0.0.127 eq 443
+access-list 111 permit tcp host 137.17.116.245 137.17.112.128 0.0.0.127 eq 3389
+access-list 111 permit icmp host 137.17.116.245 137.17.112.128 0.0.0.127
+!
+! Permist access infotrans.dnw.aero to the SCM system on port 80
+access-list 111 permit tcp host 137.17.112.15 host 137.17.116.29 eq 80
+!
+! Permit access Modest to Antares via remote desktop  
+!access-list 111 permit tcp host 213.148.224.216 host 137.17.116.234 eq 3389 
+!
+! Permit access Ale Bosma Cofeley to Airco PC (via remote desktop)
+! access-list 111 permit tcp host 62.234.190.36 host 137.17.116.251 
+!
+! Permit access ABB to FAN-Drive laptop via wireless and HTTPS
+access-list 111 permit tcp host 12.40.253.181 host 137.17.115.131 eq 443 
+access-list 111 permit tcp host 12.40.253.182 host 137.17.115.131 eq 443 
+access-list 111 permit tcp host 12.40.253.183 host 137.17.115.131 eq 443 
+!
+! Access CCI IT Groep to server Orion  -  Following 15 lines blocked Cor/Theo 25-8-2016
+! access-list 111 permit tcp host 80.126.212.29 host 137.17.112.13 eq www 
+! access-list 111 permit tcp host 80.126.212.29 host 137.17.112.13 eq 443 
+! access-list 111 permit tcp host 80.126.212.29 host 137.17.112.13 eq ftp 
+! access-list 111 permit tcp host 80.126.212.29 host 137.17.112.13 eq ftp-data 
+! access-list 111 permit tcp host 80.126.212.29 host 137.17.112.13 eq 3389 
+!
+! access-list 111 permit tcp host 80.127.202.1 host 137.17.112.13 eq www 
+! access-list 111 permit tcp host 80.127.202.1 host 137.17.112.13 eq 443 
+! access-list 111 permit tcp host 80.127.202.1 host 137.17.112.13 eq ftp 
+! access-list 111 permit tcp host 80.127.202.1 host 137.17.112.13 eq ftp-data 
+! access-list 111 permit tcp host 80.127.202.1 host 137.17.112.13 eq 3389 
+!
+! access-list 111 permit tcp host 82.215.28.177 host 137.17.112.13 eq www 
+! access-list 111 permit tcp host 82.215.28.177 host 137.17.112.13 eq 443 
+! access-list 111 permit tcp host 82.215.28.177 host 137.17.112.13 eq ftp 
+! access-list 111 permit tcp host 82.215.28.177 host 137.17.112.13 eq ftp-data 
+! access-list 111 permit tcp host 82.215.28.177 host 137.17.112.13 eq 3389 
+
+! Allow External access to InfoTrans Server 24-04-2015 PatrickV
+access-list 111 permit tcp any host 137.17.112.15 eq 443
+!
+! Add TFTP DNW-WEB2 to ACF Bentveld Automatisering   6-4-2016  TheoA
+access-list 111 permit tcp host 90.145.63.194 host 137.17.112.12 range 20 22
+!
+! Add DNW-WEB2 to SCM  19-01-2017  TheoA
+access-list 111 permit tcp host 137.17.116.29 host 137.17.112.12 eq www
+access-list 111 permit tcp host 137.17.116.29 host 137.17.112.12 eq 443
+!
+! Add FTPS to Transfer (137.17.112.2)  13-3-2013 TheoA
+!access-list 111 permit tcp any host 137.17.112.2 eq www 
+access-list 111 permit tcp any host 137.17.112.2 eq 443 
+!access-list 111 permit tcp any host 137.17.112.2 eq 445 
+access-list 111 permit tcp any host 137.17.112.2 eq ftp 
+access-list 111 permit tcp any host 137.17.112.2 eq ftp-data 
+access-list 111 permit tcp any host 137.17.112.2 eq 3389 
+access-list 111 permit tcp any host 137.17.112.2 range 20 22
+access-list 111 permit tcp any host 137.17.112.2 eq 990
+access-list 111 permit tcp any host 137.17.112.2 range 50000 65535
+!
+! Add access to WSUS and Nod32 for DMZ hosts   Theo 06-11-2014
+access-list 111 permit tcp host 137.17.116.52 host 137.17.112.2 eq www
+access-list 111 permit tcp host 137.17.116.52 host 137.17.112.2 range 2221 2222
+access-list 111 permit tcp host 137.17.116.52 host 137.17.112.12 eq www
+access-list 111 permit tcp host 137.17.116.52 host 137.17.112.12 range 2221 2222
+access-list 111 permit tcp host 137.17.116.52 host 137.17.112.13 eq www
+access-list 111 permit tcp host 137.17.116.52 host 137.17.112.13 range 2221 2222
+!
+! Permit ICMP traffic to complete DNW 112 network (control messages)
+! (should be activated for tests with external hosts)
+!!! access-list 111 permit icmp any 137.17.112.0 0.0.7.255
+!
+! Permit ICMP traffic to 104 subnetwork (control messages)
+! (enabled for NLR Hobbit)
+access-list 111 permit icmp host 137.17.28.26  host 137.17.104.82
+!
+! Catch all packets to be denied. These explicit rules replace the implicit
+! ones (default). Don't log ident (113/tcp) requests, just count them!
+!
+access-list 111 deny tcp any any eq 113
+access-list 111 deny tcp any any eq 80
+access-list 111 deny ip any any
+!
+end
